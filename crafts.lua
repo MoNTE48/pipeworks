@@ -1,5 +1,10 @@
 -- Crafting recipes for pipes
-local materials = xcompat.materials
+local materials = table.copy(xcompat.materials)
+materials.mese = "bluestone_materials:bluestoneblock"
+materials.mese_crystal = "bluestone:dust"
+materials.mese_crystal_fragment = "bluestone:dust"
+materials.desert_sand = "group:sand"
+materials.desert_stone = materials.stone
 
 core.register_craft( {
 	output = "pipeworks:pipe_1_empty 12",
