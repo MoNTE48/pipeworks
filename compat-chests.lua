@@ -27,10 +27,11 @@ local function update_node_formspec(pos)
 	meta:set_string("formspec", new_fs)
 end
 
+--if true then return end -- TEMP!!
 
 if core.get_modpath("default") then
 	-- add the pipeworks switch into the default chest formspec
-	local old_get_chest_formspec = default.chest.get_chest_formspec
+	--[[local old_get_chest_formspec = default.chest.get_chest_formspec
 	-- luacheck: ignore 122
 	default.chest.get_chest_formspec = function(pos)
 		local old_fs = old_get_chest_formspec(pos)
@@ -42,7 +43,7 @@ if core.get_modpath("default") then
 		else
 			return old_fs
 		end
-	end
+	end]]
 
 	-- get the fields from the chest formspec, we can do this bc. newest functions are called first
 	-- https://github.com/luanti-org/luanti/blob/d4b10db998ebeb689b3d27368e30952a42169d03/doc/lua_api.md?plain=1#L5840
@@ -74,8 +75,8 @@ if core.get_modpath("default") then
 
 	pipeworks.override_chest("default:chest", {}, connect_sides)
 	pipeworks.override_chest("default:chest_open", {}, connect_sides_open)
-	pipeworks.override_chest("default:chest_locked", {}, connect_sides)
-	pipeworks.override_chest("default:chest_locked_open", {}, connect_sides_open)
+--	pipeworks.override_chest("default:chest_locked", {}, connect_sides)
+--	pipeworks.override_chest("default:chest_locked_open", {}, connect_sides_open)
 elseif core.get_modpath("hades_chests") then
 	local chest_colors = {"", "white", "grey", "dark_grey", "black", "blue", "cyan", "dark_green", "green", "magenta",
 						  "orange", "pink", "red", "violet", "yellow"}
