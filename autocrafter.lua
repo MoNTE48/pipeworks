@@ -254,6 +254,10 @@ end
 local function run_autocrafter(pos, elapsed)
 	local meta = core.get_meta(pos)
 	local inventory = meta:get_inventory()
+	if not inventory or inventory:is_empty("recipe") then
+		meta:set_string("infotext", S("unconfigured Autocrafter"))
+		return false -- CHANGED!!
+	end
 	local craft = get_craft(pos, inventory)
 	local output_item = craft.output.item
 	-- only use crafts that have an actual result
