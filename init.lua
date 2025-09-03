@@ -73,7 +73,7 @@ dofile(pipeworks.modpath.."/tubes/tags.lua")
 if pipeworks.enable_teleport_tube then
 	dofile(pipeworks.modpath.."/tubes/teleport.lua")
 end
-if pipeworks.enable_lua_tube and core.get_modpath("mesecons") then
+if pipeworks.enable_lua_tube and core.global_exists("mesecons_luacontroller") then
 	dofile(pipeworks.modpath.."/tubes/lua.lua")
 end
 if pipeworks.enable_sand_tube or pipeworks.enable_mese_sand_tube then
@@ -118,7 +118,7 @@ core.register_alias("pipeworks:pipe", "pipeworks:pipe_110000_empty")
 if core.get_modpath("unified_inventory") and unified_inventory.registered_categories then
 	if not unified_inventory.registered_categories["automation"] then
 		local symbol
-		if pipeworks.enable_lua_tube then
+		if pipeworks.enable_lua_tube and core.global_exists("mesecons_luacontroller") then
 			symbol = "pipeworks:lua_tube000000"
 		else
 			symbol = "pipeworks:mese_filter" -- fallback when lua tube isn't registered
