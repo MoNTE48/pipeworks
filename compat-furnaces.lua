@@ -25,7 +25,7 @@ groups_active["not_in_creative_inventory"] = 1
 local override = {
 	tiles = {
 		"default_furnace_top.png"..tube_entry,
-		"default_furnace_bottom.png"..tube_entry,
+		"default_furnace_top.png"..tube_entry,
 		"default_furnace_side.png"..tube_entry,
 		"default_furnace_side.png"..tube_entry,
 		"default_furnace_side.png"..tube_entry,
@@ -70,21 +70,21 @@ local override = {
 local override_active = {
 	tiles = {
 		"default_furnace_top.png"..tube_entry,
-		"default_furnace_bottom.png"..tube_entry,
+		"default_furnace_top.png"..tube_entry,
 		"default_furnace_side.png"..tube_entry,
 		"default_furnace_side.png"..tube_entry,
 		"default_furnace_side.png"..tube_entry,
-		{
-			image = "default_furnace_front_active.png",
-			backface_culling = false,
-			animation = {
-				type = "vertical_frames",
-				aspect_w = 16,
-				aspect_h = 16,
-				length = 1.5
-			},
-		}
+		"default_furnace_front.png",
 	},
+	overlay_tiles = {"", "", "", "", "", {
+		image = "default_furnace_front_active.png",
+		animation = {
+			type = "vertical_frames",
+			aspect_w = 16,
+			aspect_h = 16,
+			length = 1.5
+		}
+	}},
 	groups = groups_active,
 	tube = {
 		insert_object = function(pos,node,stack,direction)
