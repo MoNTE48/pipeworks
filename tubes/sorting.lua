@@ -96,7 +96,7 @@ if pipeworks.enable_mese_tube then
 								tube_def.can_insert(npos, node, stack, vect) then
 									local invname = "line"..i
 									local is_empty = true
-									for _, st in ipairs(inv:get_list(invname)) do
+									for _, st in ipairs(inv:get_list(invname) or {}) do
 										if not st:is_empty() then
 											is_empty = false
 											if st:get_name() == name then
