@@ -249,8 +249,8 @@ if pipeworks.enable_node_breaker then
 		action = function(fakeplayer, pointed)
 			local stack = fakeplayer:get_wielded_item()
 			local old_stack = ItemStack(stack)
-			local item_def = core.registered_items[stack:get_name()]
-			if item_def.on_use then
+			local item_def = core.registered_items[stack:get_name()] or {}
+			if item_def and item_def.on_use then
 				stack = item_def.on_use(stack, fakeplayer, pointed) or stack
 				fakeplayer:set_wielded_item(stack)
 			else
