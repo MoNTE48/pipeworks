@@ -310,7 +310,17 @@ if pipeworks.enable_deployer then
 			local stack = fakeplayer:get_wielded_item()
 			local def = core.registered_items[stack:get_name()]
 			if def and def.on_place then
+				-- Disable creative mode temporarily if the server is in
+				-- survival mode
+				local old_is_creative_enabled = minetest.is_creative_enabled
+				if not minetest.is_creative_enabled("") then
+					function minetest.is_creative_enabled() return false end
+				end
+
 				local new_stack, placed_pos = def.on_place(stack, fakeplayer, pointed)
+
+				minetest.is_creative_enabled = old_is_creative_enabled
+
 				fakeplayer:set_wielded_item(new_stack or stack)
 				-- core.item_place_node doesn't play sound to the placer
 				local sound = placed_pos and def.sounds and def.sounds.place
