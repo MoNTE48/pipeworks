@@ -70,7 +70,9 @@ local function wielder_action(def, pos, node, index)
 	}
 	def.action(fakeplayer, pointed)
 	if def.eject_drops then
-		for i, stack in ipairs(inv:get_list("main")) do
+		local drops = inv:get_list("main")
+		if not drops then return end
+		for i, stack in ipairs(drops) do
 			if not stack:is_empty() then
 				pipeworks.tube_inject_item(pos, pos, dir, stack)
 				inv:set_stack("main", i, ItemStack(""))
